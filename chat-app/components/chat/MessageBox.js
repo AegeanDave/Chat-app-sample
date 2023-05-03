@@ -1,4 +1,5 @@
 import { HStack, Avatar, Center, Skeleton, Text } from 'native-base'
+import { MaterialCommunityIcons, FontAwesome5 } from '@expo/vector-icons'
 
 export default function MessageBox({ item, isLoading }) {
   const isAI = item.role === 'ai' || item.role === 'assistant'
@@ -11,8 +12,14 @@ export default function MessageBox({ item, isLoading }) {
         padding={4}
         maxW='100%'
       >
-        <Avatar bg='green.500'>{item.role.toUpperCase()}</Avatar>
-        <Center bg='primary.500' rounded='md' shadow={3} padding={3}>
+        <Avatar bg='green.300'>
+          <MaterialCommunityIcons
+            name='robot-angry-outline'
+            size={24}
+            color='#3F68AF'
+          />
+        </Avatar>
+        <Center bg='lightBlue.600' rounded='md' shadow={3} padding={3}>
           <HStack space={2}>
             <Skeleton size={1} rounded='full'></Skeleton>
             <Skeleton size={1} rounded='full'></Skeleton>
@@ -30,7 +37,20 @@ export default function MessageBox({ item, isLoading }) {
       justifyContent={isAI ? 'flex-start' : 'flex-end'}
       padding={4}
     >
-      <Avatar bg='green.500'>{item.role.toUpperCase()}</Avatar>
+      {isAI ? (
+        <Avatar bg='green.100'>
+          <MaterialCommunityIcons
+            name='robot-angry-outline'
+            size={24}
+            color='#3F68AF'
+          />
+        </Avatar>
+      ) : (
+        <Avatar bg='lightBlue.100'>
+          <FontAwesome5 name='user-astronaut' size={24} color='indigo' />
+        </Avatar>
+      )}
+
       <Center
         bg={isAI ? 'lightBlue.600' : 'lightBlue.200'}
         rounded='md'
