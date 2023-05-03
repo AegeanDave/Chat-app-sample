@@ -1,14 +1,16 @@
 import { Box, ScrollView, VStack } from 'native-base'
 import { Form, MessageBox } from 'components'
 import { useChat } from 'context/ChatContext'
-import { useState, useRef } from 'react'
+import { useRef } from 'react'
+import { Stack } from 'expo-router'
 
 export default function Room() {
   const { records, isLoading } = useChat()
   const ref = useRef(null)
 
   return (
-    <Box flex={1} bg='#fff' safeAreaTop>
+    <Box flex={1} bg='#fff'>
+      <Stack.Screen />
       <VStack flex={1}>
         <ScrollView
           ref={ref}

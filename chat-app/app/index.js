@@ -1,18 +1,17 @@
-import { Link } from 'expo-router'
+import { Link, useRouter } from 'expo-router'
 import {
   Box,
   Button,
   Heading,
   Text,
   Image,
-  Spacer,
   Container,
-  ChevronRightIcon,
-  ArrowForwardIcon
+  ChevronRightIcon
 } from 'native-base'
 import Logo from 'assets/images/logo.png'
 
 export default function Index() {
+  const router = useRouter()
   return (
     <Box flex={1} bg='#F8F8F9' alignItems='center' justifyContent='center'>
       <Container alignItems='center' padding={3}>
@@ -31,12 +30,13 @@ export default function Index() {
         pl={10}
         pr={10}
         endIcon={<ChevronRightIcon size='md' color='white' />}
+        onPress={() => {
+          router.push('/room')
+        }}
       >
-        <Link href='/room'>
-          <Heading color='white' size='md'>
-            GO TO CHAT
-          </Heading>
-        </Link>
+        <Heading color='white' size='md'>
+          GO TO CHAT
+        </Heading>
       </Button>
     </Box>
   )
