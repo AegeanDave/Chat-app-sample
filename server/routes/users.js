@@ -8,7 +8,6 @@ const configuration = new Configuration({
 
 const openai = new OpenAIApi(configuration)
 
-/* GET users listing. */
 router.post('/completion', async (req, res, next) => {
     const { input, role } = req.body
 
@@ -28,19 +27,21 @@ router.post('/completion', async (req, res, next) => {
     res.json(response.data)
 })
 
-/* GET users listing. */
 router.post('/chat', async (req, res, next) => {
     const { input, role } = req.body
-
-    const response = await openai.createChatCompletion({
-        model: 'gpt-3.5-turbo',
-        messages: [{ role: role || 'user', content: input || '' }],
-    })
-    if (!response.data) {
-        res.status(403)
-        return
+    try {
+        const response = await openai.createChatCompletion({
+            model: 'gpt-3.5-turbo',
+            messages: input,
+        })
+        res.json(response.data)
+    } catch (error) {
+        if (error.messages) {
+            res.status(429).send(error.messages)
+            return
+        }
+        res.status(403).send(error.messages)
     }
-    res.json(response.data)
 })
 
 module.exports = router

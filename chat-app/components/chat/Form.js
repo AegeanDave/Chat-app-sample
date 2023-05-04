@@ -6,7 +6,7 @@ import { Platform } from 'react-native'
 
 export default function Form() {
   const [input, setInput] = useState('')
-  const { handleSubmit } = useChat()
+  const { handleSubmit, isLoading } = useChat()
   return (
     <KeyboardAvoidingView
       keyboardVerticalOffset={70}
@@ -26,7 +26,7 @@ export default function Form() {
           w='100%'
           InputRightElement={
             <IconButton
-              disabled={!input}
+              disabled={!input || isLoading}
               icon={<SendIcon />}
               onPress={() => {
                 setInput('')
