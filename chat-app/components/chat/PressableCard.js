@@ -1,9 +1,12 @@
 import React from 'react'
 import { Pressable, Text, Box, Flex } from 'native-base'
+import { useChat } from 'context/ChatContext'
 
 const PressableCard = props => {
+  const { handleSubmit } = useChat()
+
   return (
-    <Pressable>
+    <Pressable onPress={() => handleSubmit(props.item)}>
       {({ isPressed }) => {
         return (
           <Box

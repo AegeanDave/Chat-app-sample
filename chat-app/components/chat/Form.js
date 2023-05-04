@@ -1,11 +1,19 @@
-import { HStack, Input, IconButton, KeyboardAvoidingView } from 'native-base'
+import {
+  HStack,
+  IconButton,
+  KeyboardAvoidingView,
+  TextArea,
+  Button
+} from 'native-base'
 import { useState } from 'react'
-import SendIcon from '../icons/SendIcon'
+import { SendIcon, SoundIcon, KeyboardIcon } from 'components'
+import VoiceRecordForm from './VoiceRecordForm'
 import { useChat } from 'context/ChatContext'
 import { Platform } from 'react-native'
 
 export default function Form() {
   const [input, setInput] = useState('')
+  const [isVoice, setIsVoice] = useState(false)
   const { handleSubmit, isLoading } = useChat()
   return (
     <KeyboardAvoidingView
@@ -15,26 +23,46 @@ export default function Form() {
       <HStack
         bgColor='rbga(255,255,255,0.1)'
         safeAreaBottom
+        space={2}
         justifyContent='center'
-        p={3}
+        alignItems='flex-end'
+        pl={4}
+        pr={4}
       >
-        <Input
-          value={input}
-          onChangeText={text => setInput(text)}
-          placeholder='Type your message'
-          variant='rounded'
-          w='100%'
-          InputRightElement={
+        {isVoice ? (
+          <VoiceRecordForm
+            setInput={setInput}
+            setIsVoice={setIsVoice}
+          ></VoiceRecordForm>
+        ) : (
+          <>
             <IconButton
-              disabled={!input || isLoading}
-              icon={<SendIcon />}
+              disabled={isLoading}
+              size='sm'
+              icon={<SoundIcon size='xl' />}
               onPress={() => {
-                setInput('')
-                handleSubmit(input)
+                setIsVoice(true)
               }}
             ></IconButton>
-          }
-        ></Input>
+            <TextArea
+              h={10}
+              fontSize={16}
+              value={input}
+              flex={1}
+              onChangeText={text => setInput(text)}
+              placeholder='Type your message'
+            ></TextArea>
+          </>
+        )}
+        <IconButton
+          disabled={!input || isLoading}
+          size='sm'
+          icon={<SendIcon size='xl' disabled={!input || isLoading} />}
+          onPress={() => {
+            setInput('')
+            handleSubmit(input)
+          }}
+        ></IconButton>
       </HStack>
     </KeyboardAvoidingView>
   )

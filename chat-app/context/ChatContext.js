@@ -15,13 +15,9 @@ export function Provider(props) {
     setRecords(pre => [...pre, { role: 'user', content: input }])
     setIsLoading(true)
     try {
-      const response = await axios.post(
-        `${SERVER_BASE_URL}/users/chat`,
-        {
-          input: [...records, { role: 'user', content: input }]
-        },
-        { timeout: 5000 }
-      )
+      const response = await axios.post(`${SERVER_BASE_URL}/users/chat`, {
+        input: [...records, { role: 'user', content: input }]
+      })
       setRecords(pre => [...pre, response.data.choices[0].message])
       setIsLoading(pre => !pre)
     } catch (error) {

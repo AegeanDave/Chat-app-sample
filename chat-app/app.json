@@ -5,6 +5,12 @@
       "bundler": "metro"
     },
     "name": "chat-app",
-    "slug": "chat-app"
+    "slug": "chat-app",
+    "android": {
+      "package": "com.anonymous.chatapp"
+    },
+    "ios": {
+      "bundleIdentifier": "com.anonymous.chatapp"
+    }
   }
 }

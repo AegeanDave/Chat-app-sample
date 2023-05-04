@@ -7,7 +7,6 @@ import { TopicList } from 'constants'
 export default function Room() {
   const { records, isLoading } = useChat()
   const ref = useRef(null)
-  console.log(TopicList.sort(() => 0.5 - Math.random()).slice(0, 4))
   return (
     <Box flex={1} bg='#fff'>
       <VStack flex={1}>
