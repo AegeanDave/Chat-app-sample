@@ -7,7 +7,6 @@
 var app = require('../app')
 var debug = require('debug')('server:server')
 var http = require('http')
-const WebSocket = require('ws')
 
 /**
  * Get port from environment and store in Express.
@@ -21,29 +20,9 @@ app.set('port', port)
  */
 
 var server = http.createServer(app)
-const wss = new WebSocket.Server({ server })
 /**
  * Listen on provided port, on all network interfaces.
  */
-function broadcast(msg) {
-    for (const client of wss.clients) {
-        if (client.readyState === ws.OPEN) {
-            client.send(msg)
-        }
-    }
-}
-
-wss.on('connection', (ws) => {
-    //connection is up, let's add a simple simple event
-    ws.on('message', (message) => {
-        //log the received message and send it back to the client
-        console.log('received: %s', message)
-        broadcast(message)
-    })
-
-    //send immediatly a feedback to the incoming connection
-    ws.send('Hi there, I am a WebSocket server')
-})
 
 server.listen(port)
 server.on('error', onError)

@@ -4,7 +4,6 @@ import { useChat } from 'context/ChatContext'
 import Animated, {
   FadeInUp,
   FadeOutDown,
-  Layout,
   FadingTransition
 } from 'react-native-reanimated'
 

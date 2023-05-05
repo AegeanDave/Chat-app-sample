@@ -4,17 +4,4 @@ import Header from 'components/commons/Header'
 import PressableCard from 'components/chat/PressableCard'
 import TopicGroup from './chat/TopicGroup'
 
-import SendIcon from './icons/SendIcon'
-import SoundIcon from './icons/SoundIcon'
-import KeyboardIcon from './icons/KeyboardIcon'
-
-export {
-  MessageBox,
-  Form,
-  SendIcon,
-  Header,
-  PressableCard,
-  SoundIcon,
-  KeyboardIcon,
-  TopicGroup
-}
+export { MessageBox, Form, Header, PressableCard, TopicGroup }

@@ -1,6 +1,6 @@
 import { IconButton, Button, Slide } from 'native-base'
 import { useEffect, useState } from 'react'
-import { KeyboardIcon } from 'components'
+import { KeyboardIcon } from '../icons'
 import Voice from '@react-native-voice/voice'
 
 export default function VoiceRecordForm({ setInput, setIsVoice }) {

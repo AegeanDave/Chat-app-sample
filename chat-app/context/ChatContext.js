@@ -1,14 +1,9 @@
-import React, {
-  useContext,
-  createContext,
-  useState,
-  useMemo,
-  useCallback,
-  useEffect
-} from 'react'
+import React, { useContext, createContext, useState, useCallback } from 'react'
 import axios from 'axios'
 import { SERVER_BASE_URL } from '@env'
+
 import { TopicList } from 'constants'
+
 const ChatContext = createContext(null)
 
 // This hook can be used to access the user info.
@@ -28,7 +23,6 @@ export function Provider(props) {
   const handleSubmit = async input => {
     setRecords(pre => [...pre, { role: 'user', content: input }])
     setIsLoading(true)
-
     try {
       const response = await axios.post(`${SERVER_BASE_URL}/users/chat`, {
         input: [...records, { role: 'user', content: input }]

@@ -1,6 +1,6 @@
 import { HStack, IconButton, KeyboardAvoidingView, TextArea } from 'native-base'
 import { useState } from 'react'
-import { SendIcon, SoundIcon } from '../index'
+import { SendIcon, SoundIcon } from '../icons'
 import VoiceRecordForm from './VoiceRecordForm'
 import { useChat } from 'context/ChatContext'
 import { Platform } from 'react-native'
@@ -9,6 +9,7 @@ export default function Form() {
   const [input, setInput] = useState('')
   const [isVoice, setIsVoice] = useState(false)
   const { handleSubmit, isLoading } = useChat()
+  const [height, setHeight] = useState(10)
   return (
     <KeyboardAvoidingView
       keyboardVerticalOffset={70}
@@ -39,7 +40,11 @@ export default function Form() {
               }}
             ></IconButton>
             <TextArea
-              h={10}
+              h={height}
+              onContentSizeChange={e => {
+                console.log(e)
+                setHeight(20)
+              }}
               fontSize={16}
               value={input}
               flex={1}
