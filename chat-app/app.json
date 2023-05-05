@@ -7,10 +7,27 @@
     "name": "chat-app",
     "slug": "chat-app",
     "android": {
-      "package": "com.anonymous.chatapp"
+      "package": "com.anonymous.chatapp",
+      "permissions": [
+        "android.permission.RECORD_AUDIO"
+      ]
     },
     "ios": {
       "bundleIdentifier": "com.anonymous.chatapp"
+    },
+    "plugins": [
+      [
+        "@react-native-voice/voice",
+        {
+          "microphonePermission": "Allow Voice to Text Tutorial to access the microphone",
+          "speechRecognitionPermission": "Allow Voice to Text Tutorial to securely recognize user speech"
+        }
+      ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "77be897f-86ac-4f82-8074-48eea9455215"
+      }
     }
   }
 }

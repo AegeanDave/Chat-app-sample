@@ -1,5 +1,6 @@
 import { HStack, Avatar, Center, Skeleton, Text } from 'native-base'
 import { MaterialCommunityIcons, FontAwesome5 } from '@expo/vector-icons'
+import Animated, { FadeInLeft, FadeInRight } from 'react-native-reanimated'
 
 export default function MessageBox({ item, isLoading }) {
   const isAI = item.role === 'ai' || item.role === 'assistant'
@@ -50,7 +51,6 @@ export default function MessageBox({ item, isLoading }) {
           <FontAwesome5 name='user-astronaut' size={24} color='indigo' />
         </Avatar>
       )}
-
       <Center
         bg={isAI ? 'lightBlue.600' : 'lightBlue.200'}
         rounded='md'
@@ -58,9 +58,11 @@ export default function MessageBox({ item, isLoading }) {
         padding={3}
         maxW='70%'
       >
-        <Text color={isAI ? 'lightBlue.50' : 'darkBlue'}>
-          {item.text || item.content}
-        </Text>
+        <Animated.View entering={isAI ? FadeInLeft : FadeInRight}>
+          <Text color={isAI ? 'lightBlue.50' : 'darkBlue'}>
+            {item.text || item.content}
+          </Text>
+        </Animated.View>
       </Center>
     </HStack>
   )

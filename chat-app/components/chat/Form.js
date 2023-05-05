@@ -1,12 +1,6 @@
-import {
-  HStack,
-  IconButton,
-  KeyboardAvoidingView,
-  TextArea,
-  Button
-} from 'native-base'
+import { HStack, IconButton, KeyboardAvoidingView, TextArea } from 'native-base'
 import { useState } from 'react'
-import { SendIcon, SoundIcon, KeyboardIcon } from 'components'
+import { SendIcon, SoundIcon } from '../index'
 import VoiceRecordForm from './VoiceRecordForm'
 import { useChat } from 'context/ChatContext'
 import { Platform } from 'react-native'
@@ -21,7 +15,7 @@ export default function Form() {
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
     >
       <HStack
-        bgColor='rbga(255,255,255,0.1)'
+        // bgColor='rbga(255,255,255,0.1)'
         safeAreaBottom
         space={2}
         justifyContent='center'

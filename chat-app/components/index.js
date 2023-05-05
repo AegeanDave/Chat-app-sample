@@ -2,6 +2,7 @@ import Form from 'components/chat/Form'
 import MessageBox from 'components/chat/MessageBox'
 import Header from 'components/commons/Header'
 import PressableCard from 'components/chat/PressableCard'
+import TopicGroup from './chat/TopicGroup'
 
 import SendIcon from './icons/SendIcon'
 import SoundIcon from './icons/SoundIcon'
@@ -14,5 +15,6 @@ export {
   Header,
   PressableCard,
   SoundIcon,
-  KeyboardIcon
+  KeyboardIcon,
+  TopicGroup
 }

@@ -1,7 +1,7 @@
 import { IconButton, Button, Slide } from 'native-base'
 import { useEffect, useState } from 'react'
 import { KeyboardIcon } from 'components'
-import Voice from '@react-native-community/voice'
+import Voice from '@react-native-voice/voice'
 
 export default function VoiceRecordForm({ setInput, setIsVoice }) {
   const [isLoading, setIsLoading] = useState(false)
@@ -20,6 +20,7 @@ export default function VoiceRecordForm({ setInput, setIsVoice }) {
     }
   }
   const stopRecording = async () => {
+    console.log(111)
     try {
       await Voice.stop()
       setIsLoading(false)
@@ -30,15 +31,17 @@ export default function VoiceRecordForm({ setInput, setIsVoice }) {
 
   useEffect(() => {
     Voice.onSpeechEnd = speechEndHandler
-    Voice.onSpeechResults = e => {
-      const text = e.value[0]
-      setInput(text)
-      setIsVoice(false)
-    }
+    Voice.onSpeechResults = speechResultsHandler
     return () => {
       Voice.destroy().then(Voice.removeAllListeners)
     }
   }, [])
+
+  const speechResultsHandler = result => {
+    setInput(result.value)
+    setIsVoice(false)
+  }
+
   return (
     <>
       <IconButton
@@ -49,11 +52,15 @@ export default function VoiceRecordForm({ setInput, setIsVoice }) {
           setIsVoice(false)
         }}
       ></IconButton>
-
-      <Button flex={1} onPressIn={startRecording} onPressOut={stopRecording}>
-        Hold To Record
-      </Button>
-
+      {isLoading ? (
+        <Button flex={1} onPress={stopRecording}>
+          Stop
+        </Button>
+      ) : (
+        <Button flex={1} onPress={startRecording}>
+          Start To Record
+        </Button>
+      )}
       <Slide in={isLoading} placement='top'></Slide>
     </>
   )
