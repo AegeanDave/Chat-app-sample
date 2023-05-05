@@ -42,8 +42,7 @@ export default function Form() {
             <TextArea
               h={height}
               onContentSizeChange={e => {
-                console.log(e)
-                setHeight(20)
+                setHeight(20 + e.nativeEvent.contentSize.height)
               }}
               fontSize={16}
               value={input}
