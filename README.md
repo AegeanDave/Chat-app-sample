@@ -28,6 +28,8 @@ This project aims to build a real-time chat application using Expo, React Native
 -   Node.js
 -   Express
 
+*** For Xcode15 Beta, it is necessary to upgrade `expo`, `react-native`, and `react-native-reanimated` to ensure compatibility and smooth operation.
+
 ## Contributing
 
 If you find any issues or bugs, please feel free to create an issue or submit a pull request. Any contributions are welcome!
