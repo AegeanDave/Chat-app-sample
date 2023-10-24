@@ -1,3 +1,6 @@
 chat-app/node_modules/
 chat-app/.expo/
 chat-app/ios/
+server/node_modules/
+chat-app/.env
+server/.env
